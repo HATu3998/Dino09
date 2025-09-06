@@ -26,7 +26,8 @@ public class Player : MonoBehaviour
     {
         isGround = CheckIfGrounded();
         HandleJump();
-        HandleDuck(); 
+        HandleDuck();
+        HandleSoundEffect();
     }
     private bool CheckIfGrounded()
     {
@@ -56,6 +57,29 @@ public class Player : MonoBehaviour
             normalCollider.enabled = true;
             duckCollider.enabled = false;
             anim.SetBool("isDuck", false);
+        }
+    }
+    private void HandleSoundEffect()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) && !isGround)
+        {
+            AudioManager.instance.PlayJump();
+        }
+        if (isGround && !AudioManager.instance.hasPlayEffect())
+        {
+            AudioManager.instance.PlayTap();
+            AudioManager.instance.SetHasPlayEffect(true);
+        }
+        else if (!isGround)
+        {
+            AudioManager.instance.SetHasPlayEffect(false);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Obstacle"))
+        {
+            AudioManager.instance.PlayHurt();
         }
     }
 }

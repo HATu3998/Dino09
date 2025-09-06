@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private float score = 0;
     [SerializeField] private GameObject gameStart;
     [SerializeField] private GameObject gameOver;
+    [SerializeField] private GameObject buttonQuit;
     private bool isGameOver = false;
     private void Awake()
     {
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
         isGameOver = false;
         gameStart.SetActive(true);
         gameOver.SetActive(false);
+        buttonQuit.SetActive(true);
     }
     private void HandleStartGameInput()
     {
@@ -67,6 +69,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1f;
             gameStart.SetActive(false);
             gameOver.SetActive(false);
+            buttonQuit.SetActive(false);
         }
     }
     public void GameOver()
@@ -83,5 +86,9 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
