@@ -5,7 +5,7 @@ public class parallax : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private Material material;
     [SerializeField] private float parallaxFactor = 0.01f;
-   public  float gameSpeed =5f;
+   
         private float offset;
 
     void Start()
@@ -20,7 +20,7 @@ public class parallax : MonoBehaviour
     }
     private void ParallaxScroll()
     {
-        float speed = gameSpeed * parallaxFactor;
+        float speed = GameManager.gameManager.GetGameSpeed() * parallaxFactor;
         offset += Time.deltaTime * speed;
         material.SetTextureOffset("_MainTex", Vector2.right * offset); 
     }

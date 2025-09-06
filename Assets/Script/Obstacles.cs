@@ -4,7 +4,7 @@ public class Obstacles : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public float leftBoundary = -10f;
-    public float gameSpeed = 5f;
+    
     void Start()
     {
         
@@ -17,10 +17,17 @@ public class Obstacles : MonoBehaviour
     }
     private void MoverObstacle()
     {
-        transform.position += Vector3.left * gameSpeed * Time.deltaTime;
+        transform.position += Vector3.left * GameManager.gameManager.GetGameSpeed() * Time.deltaTime;
         if(transform.position.x < leftBoundary)
         {
             Destroy(gameObject);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            GameManager.gameManager.GameOver();
         }
     }
 }

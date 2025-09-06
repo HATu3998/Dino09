@@ -47,5 +47,11 @@ TagManager:
   - name: obstacles
     uniqueID: 2049268229
     locked: 0
+  - name: UI
+    uniqueID: 2833660321
+    locked: 0
+  - name: egg
+    uniqueID: 2246958655
+    locked: 0
   m_RenderingLayers:
   - Default
