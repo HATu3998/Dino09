@@ -1,1 +1,1 @@
-![Mô tả ảnh](images/demo.png)
+![Mô tả ảnh](images/demo.PNG)
